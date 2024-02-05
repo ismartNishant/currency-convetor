@@ -9,20 +9,27 @@ const Hero = () => {
     const [from, setFrom] = useState("usd")
     const [to, setTo] = useState("inr")
     const [convertedAmount, setConvertedAmount] = useState(0)
-  
-    const currencyInfo = UseCurrencyInfo(from)
-  
+
+    // Define the type of currencyInfo
+    type CurrencyInfo = {
+        [key: string]: number; // Index signature allowing any string key with number values
+    };
+
+    // Now, use the defined type for currencyInfo
+    const currencyInfo: CurrencyInfo = UseCurrencyInfo(from);
+
+
     const options = Object.keys(currencyInfo)
-  
+
     const swap = () => {
-      setFrom(to)
-      setTo(from)
-      setConvertedAmount(amount)
-      setAmount(convertedAmount)
+        setFrom(to)
+        setTo(from)
+        setConvertedAmount(amount)
+        setAmount(convertedAmount)
     }
-    
+
     const convert = () => {
-      setConvertedAmount(amount * currencyInfo[to])
+        setConvertedAmount(amount * currencyInfo[to])
     }
 
     return (
@@ -39,15 +46,15 @@ const Hero = () => {
                         >
                             <div className="w-full mb-1">
                                 <InputBox
-                                      amount={amount}
-                                      currencyOptions={options}
-                                    
-                                      onAmountChange={(newAmount) => setAmount(newAmount)}
-                                      onCurrencyChange={(currency) => setFrom(currency)}
-                                      selectCurrency={from}
-                                      label="From"
-                                      className={""}
-                                      />
+                                    amount={amount}
+                                    currencyOptions={options}
+
+                                    onAmountChange={(newAmount) => setAmount(newAmount)}
+                                    onCurrencyChange={(currency) => setFrom(currency)}
+                                    selectCurrency={from}
+                                    label="From"
+                                    className={""}
+                                />
                             </div>
                             <div className="relative w-full h-0.5">
                                 <button type="button"
@@ -60,12 +67,12 @@ const Hero = () => {
                                     label="To"
                                     className={""}
                                     amount={convertedAmount}
-                                  
+
                                     onAmountChange={(newAmount) => setConvertedAmount(newAmount)}
                                     currencyOptions={options}
                                     onCurrencyChange={(currency) => setTo(currency)}
                                     selectCurrency={to}
-                               
+
                                 />
                             </div>
                             <button type="submit" className="w-full bg-yellow-300  dark:hover:text-white text-black font-semibold px-4 py-3 rounded-lg hover:bg-orange-400 dark:hover:bg-pink-700 dark:bg-sky-400">
