@@ -15,14 +15,7 @@ export function Mynav({ theme, setTheme }: MyNavProps) {
       name: 'Home',
       href: '#',
     },
-    {
-      name: 'About',
-      href: '#',
-    },
-    {
-      name: 'Contact',
-      href: '#',
-    },
+
   ]
 
 
@@ -84,7 +77,7 @@ export function Mynav({ theme, setTheme }: MyNavProps) {
       <div className="mx-auto flex items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-1">
           <span className='cursor-pointer'>
-            <img className='w-12' src='/src/assets/logo.png' alt='logo' />
+            <img className='w-12' src='/logo.png' alt='logo' />
           </span>
           <span className="cursor-pointer font-bold text-2xl">CURRENCY</span>
         </div>
