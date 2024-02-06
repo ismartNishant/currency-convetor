@@ -1,6 +1,7 @@
 import { SunIcon, MoonIcon } from 'lucide-react';
 import { Dispatch, SetStateAction, useEffect } from 'react';
-import React from 'react'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react'
 
 interface MyNavProps {
@@ -13,7 +14,11 @@ export function Mynav({ theme, setTheme }: MyNavProps) {
   const menuItems = [
     {
       name: 'Home',
-      href: '#',
+      path: '/',
+    },
+    {
+      name: 'About Us',
+      path: '/about',
     },
 
   ]
@@ -73,11 +78,12 @@ export function Mynav({ theme, setTheme }: MyNavProps) {
   }
 
   return (
-    <div className="fixed z-20 w-full dark:bg-gray-900 dark:text-white bg-white text-black  ">
+    <div className="fixed z-20 w-full dark:bg-gray-900 dark:text-white bg-white text-black shadow  ">
       <div className="mx-auto flex items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-1">
           <span className='cursor-pointer'>
-            <img className='w-12' src='/logo.png' alt='logo' />
+            <NavLink to="/">  <img className='w-12' src='/logo.png' alt='logo' /> </NavLink>
+
           </span>
           <span className="cursor-pointer font-bold text-2xl">CURRENCY</span>
         </div>
@@ -85,13 +91,11 @@ export function Mynav({ theme, setTheme }: MyNavProps) {
           <ul className="ml-12 inline-flex space-x-8">
             {menuItems.map((item) => (
               <li key={item.name}>
-                <a
-                  href={item.href}
+                <NavLink to={item.path}
                   onClick={toggleMenu}
-                  className="text-lg font-semibold dark:text-gray-100 text-gray-800 hover:text-yellow-400 hover:underline-offset-8 hover:underline duration-300"
-                >
+                  className= {({isActive}) => `${isActive ? "text-yellow-400": "dark:text-gray-100 text-gray-800"} text-lg font-semibold  hover:text-yellow-400 hover:underline-offset-8 hover:underline duration-300`}>
                   {item.name}
-                </a>
+                </NavLink>
               </li>
             ))}
           </ul>
@@ -120,7 +124,7 @@ export function Mynav({ theme, setTheme }: MyNavProps) {
                 <div className="flex items-center justify-between">
                   <div className="inline-flex items-center space-x-2">
                     <span>
-                      <img className='w-10' src='/src/assets/SL-020622-4930-02.jpg' alt='logo' />
+                      <NavLink to="/">  <img className='w-12' src='/logo.png' alt='logo' /> </NavLink>
                     </span>
                     <span className="font-bold">DevUI</span>
                   </div>
@@ -138,16 +142,16 @@ export function Mynav({ theme, setTheme }: MyNavProps) {
                 <div className="mt-6">
                   <nav className="grid gap-y-4">
                     {menuItems.map((item) => (
-                      <a
+                      <NavLink
                         key={item.name}
-                        href={item.href}
+                        to={item.path}
                         onClick={toggleMenu}
                         className="-m-3 flex items-center rounded-md p-3 text-sm font-semibold hover:bg-gray-50"
                       >
                         <span className="ml-3 text-base font-medium dark:text-gray-100 text-gray-900">
                           {item.name}
                         </span>
-                      </a>
+                      </NavLink>
                     ))}
                   </nav>
                 </div>
@@ -157,17 +161,12 @@ export function Mynav({ theme, setTheme }: MyNavProps) {
                     <button key={item.name}
                       type="button"
                       onClick={() => setTheme(item.name)}
-
                       className={`duration-100   mx-2 border-[3px] ${item.name === "light" ? "bg-yellow-300 " : "bg-sky-300 "} ${theme === item.name && "text-gray-800  animate-spin "}   rounded-full   p-2  font-semibold  shadow-sm   focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow `}
                     >
                       {item.icon}
                     </button>
                   ))}
-
-
-
                 </div>
-
               </div>
             </div>
           </div>

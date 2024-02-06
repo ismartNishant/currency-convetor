@@ -22,11 +22,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Default (light) mode styles */
-.bg-light-bg {
-  background-color: #ffffff; /* Light background color */
-  color: #333333; /* Light text color */
-}
 
 /* Dark mode styles */
 @media (prefers-color-scheme: dark) {
