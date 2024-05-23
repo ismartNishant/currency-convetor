@@ -40,7 +40,7 @@ export function Mynav({ theme, setTheme }: MyNavProps) {
   const element = document.documentElement;
   const darkQuerry = window.matchMedia('(prefers-color-scheme: dark)');
 
-  console.log(darkQuerry, "darkqueery")
+  // console.log(darkQuerry, "darkqueery")
 
   function onWindowMatch() {
     if (localStorage.theme === "dark" || (!("theme" in localStorage) && darkQuerry.matches)) {
